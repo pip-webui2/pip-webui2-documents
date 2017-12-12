@@ -68,6 +68,7 @@ export class PipDocumentListComponent implements OnInit, AfterViewInit {
 
     public toggleDocs() {
         this.showDocs = !this.showDocs;
+        if (this.showDocs) this.elRef.nativeElement.querySelector('.pip-documents-container').focus();
     }
 
     public onEnterSpacePress(event) {

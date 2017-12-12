@@ -4,16 +4,8 @@
 @mixin document-list-edit-mixin($theme) {
     $foreground: map-get($theme, foreground);
     $background: map-get($theme, background);
-     :host div>div:focus pip-document {
+    :host .pip-documents-container>div:focus pip-document {
         outline: solid 2px mat-color($foreground, text);
-    }
-     :host div>div .delete-button {
-        color: mat-color($foreground, text);
-        background: mat-color($background, card);
-        opacity: 0.56;
-    }
-     :host div>pip-document-edit:focus {
-        border-color: mat-color($foreground, text);
     }
 }
 
@@ -74,20 +66,59 @@
 }
 
 :host {
-    div {
-        >div,
-        >pip-document-edit {
-            display: inline-block;
+    display: block;
+    width: 100%;
+    button {
+        width: 100%;
+        height: 48px;
+        div {
+            width: 100%;
+            height: 48px;
+            padding-top: 8px;
+            display: flex;
+            vertical-align: middle;
+            span {
+                flex: 1 1 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                text-align: start;
+                margin-left: 8px;
+            }
+            mat-icon {
+                padding-top: 4px;
+                transition: transform .35s ease;
+                &.expander-icon.opened {
+                    transform: rotate(180deg) translateY(-6px);
+                }
+            }
+        }
+    }
+    .pip-documents-container {
+        padding-top: 0px;
+        transition: .35s ease;
+        max-height: 0;
+        &.opened {
+            max-height: 90px;
+            padding-top: 8px;
+            >div {
+                height: 80px;
+                .pip-document {
+                    opacity: 1;
+                }
+            }
         }
         >div {
-            margin-right: 8px;
-            margin-bottom: 8px;
-            position: relative;
-            .delete-button {
-                position: absolute;
-                top: 4px;
-                right: 4px;
+            .pip-document {
+                opacity: 0;
+                transition: .35s ease;
             }
+            height: 0;
+            max-height: 100%;
+            display: inline-block;
+            transition: all .35s ease;
+            margin-bottom: 8px;
+            margin-right: 8px;
         }
     }
 }

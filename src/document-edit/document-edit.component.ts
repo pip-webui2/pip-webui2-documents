@@ -1,5 +1,4 @@
 import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
-import { addPasteListener, removePasteListener } from '../shared/document-utils';
 
 @Component({
     selector: 'pip-document-edit',
@@ -41,7 +40,7 @@ export class PipDocumentEditComponent implements OnInit, AfterViewInit {
      }
 
     ngOnDestroy() {
-        removePasteListener(this._pasteElement);
+        
     }
 
     public removeDocument() {

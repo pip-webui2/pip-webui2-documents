@@ -18,4 +18,19 @@ export class DocumentListExampleComponent implements OnInit {
 	public onCancelClick() {
 		this.isProgress = false;
 	}
+
+	public docs = [
+        {
+            url: './assets/boy.png'
+        },
+        {
+            url: './assets/girl.png'
+        },
+        {
+            url: './assets/girl2.png'
+        },
+        {
+            url: './assets/boy2.png'
+        }
+    ];
 }

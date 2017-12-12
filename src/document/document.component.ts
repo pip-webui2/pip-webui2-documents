@@ -1,5 +1,4 @@
 import { Component, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
-import { setImageMarginCSS, setErrorImageCSS } from '../shared/document-utils';
 
 @Component({
     selector: 'pip-document',

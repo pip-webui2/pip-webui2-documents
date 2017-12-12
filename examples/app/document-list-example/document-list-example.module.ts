@@ -7,7 +7,7 @@ import { MatButtonModule, MatIconModule, MatSlideToggleModule } from '@angular/m
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DocumentListExampleComponent } from './document-list-example.component';
-import { PipDocumentModule } from '../pip-webui2-documents';
+import { PipDocumentModule, PipDocumentListModule } from '../pip-webui2-documents';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { PipDocumentModule } from '../pip-webui2-documents';
 
     TranslateModule,
 
-    PipDocumentModule
+    PipDocumentModule,
+    PipDocumentListModule
   ],
   exports: [
     DocumentListExampleComponent

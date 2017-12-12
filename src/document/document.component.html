@@ -1,2 +1,4 @@
-<img [src]="source" (load)="onImageLoad($event)" (error)="onImageError($event)">
-<div><mat-icon>{{ defaultIcon || 'image' }}</mat-icon></div>
+<div (click)="onClick()">
+    <mat-icon [ngClass]="{ 'error': !document.src }" color="{{ document?.src ? 'primary' : 'warn' }}">{{ document.src ? (defaultIcon || 'insert_drive_file') : 'error' }}</mat-icon>
+    <span>{{ document?.name }}</span>
+</div>

@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 
 import { PipDocumentModule } from '../document/document.module';
-import { PipAddImageModule } from '../add-image/add-image.module';
 
 import { PipDocumentEditComponent } from './document-edit.component';
 
@@ -17,8 +16,7 @@ import { PipDocumentEditComponent } from './document-edit.component';
     MatButtonModule,
     MatIconModule,
 
-    PipDocumentModule,
-    PipAddImageModule
+    PipDocumentModule
   ],
   exports: [
     PipDocumentEditComponent

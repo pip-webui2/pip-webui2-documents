@@ -105,6 +105,7 @@
                 height: 80px;
                 .pip-document {
                     opacity: 1;
+                    height: 80px;
                 }
             }
         }
@@ -112,6 +113,7 @@
             .pip-document {
                 opacity: 0;
                 transition: .35s ease;
+                height: 0;
             }
             height: 0;
             max-height: 100%;

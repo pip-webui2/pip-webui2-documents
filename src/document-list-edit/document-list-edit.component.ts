@@ -29,6 +29,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     }
     @Input() defaultIcon: string = null;
     @Input() defaultAddIcon: string = 'add';
+    @Input() readAsArrayBuffer: boolean = false;
     @ViewChild(PipDocumentEditComponent) private _editComponent: PipDocumentEditComponent;
     @ViewChildren(PipDocumentComponent) private _viewComponents: QueryList<PipDocumentComponent>;
     @Output() onUpdateImages: EventEmitter<any> = new EventEmitter<any>();

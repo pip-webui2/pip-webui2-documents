@@ -24,4 +24,19 @@ export class DocumentListEditExampleComponent implements OnInit {
     public onImageDelete(results) {
         console.log('Image deleted!');
     }
+
+    public docs = [
+        {
+            url: './assets/boy.png'
+        },
+        {
+            url: './assets/girl.png'
+        },
+        {
+            url: './assets/girl2.png'
+        },
+        {
+            url: './assets/boy2.png'
+        }
+    ];
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { MatButtonModule, MatIconModule, MatButtonToggleModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -20,7 +20,7 @@ import { PipDocumentModule } from '../pip-webui2-documents';
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-    MatButtonToggleModule,
+    MatSlideToggleModule,
 
     TranslateModule,
 

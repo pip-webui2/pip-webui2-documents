@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MatButtonModule, MatIconModule, MatButtonToggleModule } from '@angular/material';
 
 import { DocumentListEditExampleComponent } from './document-list-edit-example.component';
-import { PipDocumentListEditModule } from '../pip-webui2-documents';
+import { PipDocumentListEditModule, PipDocumentEditModule } from '../pip-webui2-documents';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { PipDocumentListEditModule } from '../pip-webui2-documents';
     MatIconModule,
     MatButtonToggleModule,
 
-    PipDocumentListEditModule
+    PipDocumentListEditModule,
+    PipDocumentEditModule
   ],
   exports: [
     DocumentListEditExampleComponent

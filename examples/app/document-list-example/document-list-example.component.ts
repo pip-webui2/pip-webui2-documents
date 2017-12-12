@@ -8,4 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class DocumentListExampleComponent implements OnInit {
 
 	ngOnInit() { }
+
+	public isProgress: boolean = true;
+
+	public openMe() {
+		console.log('open me please');
+	}
+
+	public onCancelClick() {
+		this.isProgress = false;
+	}
 }

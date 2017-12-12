@@ -1,7 +1,7 @@
-<div pipFocused [dynamicTrigger]="imageSources.length" (onDeletePress)="onDeletePress($event)">
-    <div [@fadeIn]="''" *ngFor="let imageSource of imageSources; let i = index" class="pip-focusable" tabindex="-1">
-        <pip-document class="square-l" [documentUrl]="imageSource" [defaultIcon]="defaultIcon"></pip-document>
+<div pipFocused [dynamicTrigger]="docs.length" (onEnterSpacePress)="onEnterSpacePress($event)" (onDeletePress)="onDeletePress($event)">
+    <div [@fadeIn]="''" *ngFor="let doc of docs; let i = index" class="pip-focusable" tabindex="-1">
+        <pip-document class="square-l" [documentUrl]="doc.src" [documentName]="doc.name" [defaultIcon]="defaultIcon"></pip-document>
         <button tabindex="-1" mat-icon-button class="delete-button" (click)="onDeleteClick(i)"><mat-icon>clear</mat-icon></button>
     </div>
-    <pip-document-edit [defaultIcon]="defaultAddIcon" [src]="currentImageSource" (onImageLoad)="onImageLoad($event)" class="pip-focusable" tabindex="0"></pip-document-edit>
+    <pip-document-edit (onLoad)="onLoad($event)" class="pip-focusable" tabindex="0"></pip-document-edit>
 </div>

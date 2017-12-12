@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatProgressBarModule } from '@angular/material';
 
 import { PipDocumentComponent } from './document.component';
 
@@ -13,7 +13,8 @@ import { PipDocumentComponent } from './document.component';
   imports: [
     BrowserModule,
     FlexLayoutModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressBarModule
   ],
   exports: [
     PipDocumentComponent

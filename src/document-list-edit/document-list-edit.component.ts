@@ -25,6 +25,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
 
     @Input() public docs: any[] = [];
     @Input() documents: any[];
+    @Input() public disabled: boolean = false;
 
     @Input() defaultIcon: string = null;
     @Input() defaultAddIcon: string = 'add';
@@ -44,7 +45,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() { }
 
     ngDoCheck() {
-        this.setDocs(this.documents);
+        if (_.difference(this.documents, this.docs).length > 0) this.setDocs(this.documents);
     }
 
     public onLoad(event) {
@@ -71,6 +72,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
 
     public onCancelClick(event, index) {
         this.documents[index]['progressVisibility'] = false;
+        this.docs[index]['progressVisibility'] = false;
         this.updateDocumentsCallback();
     }
 

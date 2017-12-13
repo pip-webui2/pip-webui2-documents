@@ -14,6 +14,7 @@ export class PipDocumentEditComponent implements OnInit, AfterViewInit {
     public document: any = {};
     private _pasteElement: any = null;
 
+    @Input() public disabled: boolean = false;
     @Input() public defaultIcon: string = 'file_upload';
     @Input() readAsArrayBuffer: boolean = false;
     @Input('documentName') set name(name: string) {

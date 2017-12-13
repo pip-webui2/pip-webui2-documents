@@ -1,5 +1,3 @@
-<pip-document-list-edit [documents]="docs"></pip-document-list-edit>
+<pip-document-list-edit [documents]="docs" [disabled]="disabled" (onUpdateDocuments)="updateDocuments($event)"></pip-document-list-edit>
 
-<button mat-button (click)="uploadDocs()">Upload</button>
-
-<input type="file" multiple>
+<button mat-button (click)="uploadDocs()">{{ 'EXAMPLES.UPLOAD' | translate }}</button>

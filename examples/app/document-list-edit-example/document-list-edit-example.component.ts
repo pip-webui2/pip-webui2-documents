@@ -15,6 +15,7 @@ export class DocumentListEditExampleComponent implements OnInit {
         './assets/girl.png',
         'https://i.pinimg.com/736x/da/af/73/daaf73960eb5a21d6bca748195f12052--lion-photography-lion-kings.jpg'
     ];
+    public disabled: boolean = false;
 
     ngOnInit() { }
 
@@ -44,9 +45,16 @@ export class DocumentListEditExampleComponent implements OnInit {
     public uploadDocs() {
         _.each(this.docs, (doc) => {
             doc.progressVisibility = true;
-            // setTimeout(() => {
-            //     //doc.progressVisibility = false;
-            // }, 2000);
+            doc.progressMode = 'indeterminate';
+            this.disabled = true;
+            setTimeout(() => {
+                 doc.progressVisibility = false;
+                 this.disabled = false;
+            }, 2000);
         });
+    }
+
+    public updateDocuments(docs) {
+        this.docs = docs;
     }
 }

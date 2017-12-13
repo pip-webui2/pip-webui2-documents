@@ -14,7 +14,8 @@ export const AppTranslations = {
     'EXAMPLES.WITH_SOURCE_FILES': 'With source files',
     'EXAMPLES.PROGRESS_STATE': 'Progress state',
     'EXAMPLES.PROGRESS': 'Progress',
-    'EXAMPLES.DOCS_LIST': 'Documents list'
+    'EXAMPLES.DOCS_LIST': 'Documents list',
+    'EXAMPLES.UPLOAD': 'Upload documents'
   },
   ru: {
     'en': 'English',
@@ -23,7 +24,8 @@ export const AppTranslations = {
     'EXAMPLES.WITH_SOURCE_FILES': 'С исходными файлами',
     'EXAMPLES.PROGRESS_STATE': 'Состояние загрузки или обработки',
     'EXAMPLES.PROGRESS': 'Загрузка или обработка',
-    'EXAMPLES.DOCS_LIST': 'Список документов'
+    'EXAMPLES.DOCS_LIST': 'Список документов',
+    'EXAMPLES.UPLOAD': 'Загрузить документы'
   }
 };
 

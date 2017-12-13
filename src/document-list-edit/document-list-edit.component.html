@@ -4,5 +4,5 @@
             [progressMode]="doc.progressMode" [progress]="doc.progress" [progressVisibility]="doc.progressVisibility" (onCancelClick)="onCancelClick($event, i)"  [defaultIcon]="defaultIcon"></pip-document>
         <button *ngIf="!doc.progressVisibility" tabindex="-1" mat-icon-button class="delete-button" (click)="onDeleteClick(i)"><mat-icon>clear</mat-icon></button>
     </div>
-    <pip-document-edit (onLoad)="onLoad($event)" [readAsArrayBuffer]="readAsArrayBuffer" class="pip-focusable" tabindex="0"></pip-document-edit>
+    <pip-document-edit (onLoad)="onLoad($event)" [disabled]="disabled" [readAsArrayBuffer]="readAsArrayBuffer" class="pip-focusable" tabindex="0"></pip-document-edit>
 </div>

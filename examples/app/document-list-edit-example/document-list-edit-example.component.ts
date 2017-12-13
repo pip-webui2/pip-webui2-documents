@@ -1,9 +1,10 @@
+import * as _ from 'lodash';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'document-list-edit-example',
-	templateUrl: 'document-list-edit-example.component.html',
-	styleUrls: ['./document-list-edit-example.component.scss']
+    selector: 'document-list-edit-example',
+    templateUrl: 'document-list-edit-example.component.html',
+    styleUrls: ['./document-list-edit-example.component.scss']
 })
 export class DocumentListEditExampleComponent implements OnInit {
 
@@ -16,7 +17,7 @@ export class DocumentListEditExampleComponent implements OnInit {
     ];
 
     ngOnInit() { }
-    
+
     public onImageLoad(results) {
         console.log('Image loaded: ', results);
     }
@@ -25,7 +26,7 @@ export class DocumentListEditExampleComponent implements OnInit {
         console.log('Image deleted!');
     }
 
-    public docs = [
+    public docs: any[] = [
         {
             url: './assets/boy.png'
         },
@@ -39,4 +40,13 @@ export class DocumentListEditExampleComponent implements OnInit {
             url: './assets/boy2.png'
         }
     ];
+
+    public uploadDocs() {
+        _.each(this.docs, (doc) => {
+            doc.progressVisibility = true;
+            // setTimeout(() => {
+            //     //doc.progressVisibility = false;
+            // }, 2000);
+        });
+    }
 }

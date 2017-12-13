@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { QueryList, Component, trigger, transition, style, animate, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener, ViewChildren, ViewChild } from '@angular/core';
+import { QueryList, IterableDiffers, Component, trigger, transition, style, animate, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener, ViewChildren, ViewChild } from '@angular/core';
 import { PipDocumentEditComponent } from '../document-edit/document-edit.component';
 import { PipDocumentComponent } from '../document/document.component'
 
@@ -23,16 +23,15 @@ import { PipDocumentComponent } from '../document/document.component'
 export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     ngOnInit() { }
 
-    public docs: any[] = [];
-    @Input() set documents(docs: any[]) {
-        this.setDocs(docs);
-    }
+    @Input() public docs: any[] = [];
+    @Input() documents: any[];
+
     @Input() defaultIcon: string = null;
     @Input() defaultAddIcon: string = 'add';
     @Input() readAsArrayBuffer: boolean = false;
     @ViewChild(PipDocumentEditComponent) private _editComponent: PipDocumentEditComponent;
     @ViewChildren(PipDocumentComponent) private _viewComponents: QueryList<PipDocumentComponent>;
-    @Output() onUpdateImages: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onUpdateDocuments: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
         private renderer: Renderer,
@@ -41,7 +40,12 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
         renderer.setElementClass(elRef.nativeElement, 'pip-document-list-edit', true);
     }
 
+
     ngAfterViewInit() { }
+
+    ngDoCheck() {
+        this.setDocs(this.documents);
+    }
 
     public onLoad(event) {
         this.docs.push({
@@ -49,7 +53,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
             name: event.name
         });
         this._editComponent.removeDocument();
-        this.updateImagesCallback();
+        this.updateDocumentsCallback();
     }
 
     public onDeleteClick(index) {
@@ -61,27 +65,55 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     }
 
     public onEnterSpacePress(event) {
-        if (event.index < this._viewComponents.length) 
-            this._viewComponents.find((component, index) => {  return index == event.index; }).openInNewTab();
+        if (event.index < this._viewComponents.length)
+            this._viewComponents.find((component, index) => { return index == event.index; }).openInNewTab();
+    }
+
+    public onCancelClick(event, index) {
+        this.documents[index]['progressVisibility'] = false;
+        this.updateDocumentsCallback();
     }
 
     private removebyIndex(index: number) {
         if (index > -1 && index < this.docs.length) {
             this.docs.splice(index, 1);
-            this.updateImagesCallback();
+            this.updateDocumentsCallback();
         }
     }
 
-    private updateImagesCallback() {
-        if (this.onUpdateImages) this.onUpdateImages.emit(this.docs);
+    private updateDocumentsCallback() {
+        if (this.onUpdateDocuments) this.onUpdateDocuments.emit(this.docs);
     }
 
     private setDocs(docs: any[]) {
-        _.each(docs, (doc) => {
-            this.docs.push({
-                src: doc.src || doc.url || doc.target || doc.file || doc.id,
-                name: doc.name || doc.file_name
-            });
+        _.each(docs, (doc, index) => {
+            let item = this.generateNewItem(doc);
+            if (this.docs[index] && this.docs[index].id == item.id) {
+                this.updateItemByIndex(index, item);
+            } else {
+                this.docs.push(item);
+            }
         });
     }
+
+    private updateItemByIndex(index, newItem) {
+        _.each(newItem, (value, key) => {
+            this.docs[index][key] = value;
+        });
+    }
+
+    private generateNewItem(doc: any) {
+        let docSrc = doc.src || doc.url || doc.target || doc.file || doc.id;
+
+        return {
+            src: docSrc,
+            id: doc.id || docSrc,
+            name: doc.name || doc.file_name,
+            progressMode: doc.progressMode || (doc.progress || doc.progressValue) ? 'determinate' : 'indeterminate',
+            progress: doc.progress || doc.progressValue,
+            progressVisibility: doc.progressVisibility || (doc.progress || doc.progressValue || doc.progressMode) ? true : false
+        }
+    }
+
+
 }

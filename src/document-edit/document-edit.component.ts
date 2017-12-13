@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitte
 })
 export class PipDocumentEditComponent implements OnInit, AfterViewInit {
     @ViewChild('fileInput') fileInput: any;
-    
+
     ngOnInit() { }
 
     public document: any = {};
@@ -37,10 +38,10 @@ export class PipDocumentEditComponent implements OnInit, AfterViewInit {
         this.renderer.listen(this.elRef.nativeElement, 'keypress', (event) => {
             if (event.keyCode == 32 || event.keyCode == 13) this.elRef.nativeElement.querySelector('input').click();
         })
-     }
+    }
 
     ngOnDestroy() {
-        
+
     }
 
     public removeDocument() {
@@ -50,20 +51,24 @@ export class PipDocumentEditComponent implements OnInit, AfterViewInit {
     }
 
     public changeFile(e) {
-        let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-        if (!file) return;
+        let files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
+        _.each(files, (file) => {
+            if (!file) return;
 
-        let reader = new FileReader();
+            let reader = new FileReader();
 
-        reader.onloadend = (result: any) => {
-            if (result) this.document.src = result.target.result;
-            this.loadEvent.emit(this.document);
-        }
+            reader.onloadend = (result: any) => {
+                if (result) this.document.src = result.target.result;
+                this.loadEvent.emit({
+                    src: result.target.result,
+                    name: file.name
+                });
+            }
+            this.document.name = file.name;
 
-        if (this.readAsArrayBuffer) reader.readAsArrayBuffer(file) 
-        else reader.readAsDataURL(file);
-
-        this.document.name = file.name;
+            if (this.readAsArrayBuffer) reader.readAsArrayBuffer(file)
+            else reader.readAsDataURL(file);
+        });
         this.defaultIcon = null;
     }
 

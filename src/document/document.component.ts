@@ -64,6 +64,7 @@ export class PipDocumentComponent implements OnInit, AfterViewInit {
             this.progressVisibility = false;
             this.onCancelClick.emit({
                 fileName: this.document.name,
+                name: this.document.name,
                 src: this.document.src
             });
 
@@ -72,6 +73,7 @@ export class PipDocumentComponent implements OnInit, AfterViewInit {
 
         this.onDocumentClick.emit({
             fileName: this.document.name,
+            name: this.document.name,
             src: this.document.src
         });
         this.openInNewTab();

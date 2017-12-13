@@ -50,7 +50,7 @@ export class AppComponent {
       name: 'Document list view', id: 'document_list', route: 'document_list'
     },
     {
-      name: 'Document List Edit', id: 'document_list_edit', route: 'document_list_edit'
+      name: 'Document list Edit', id: 'document_list_edit', route: 'document_list_edit'
     }
   ];
   @ViewChild('sidenav') sidenav: MatSidenav;

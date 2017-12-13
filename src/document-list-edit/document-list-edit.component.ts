@@ -45,7 +45,13 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() { }
 
     ngDoCheck() {
-        if (_.difference(this.documents, this.docs).length > 0) this.setDocs(this.documents);
+        if (_.differenceWith(this.documents, this.docs, (a, b) => {
+            for(let key in a) {
+                if (a[key] != b[key]) return false;
+            }
+
+            return true;
+        }).length > 0) this.setDocs(this.documents);
     }
 
     public onLoad(event) {
@@ -88,6 +94,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     }
 
     private setDocs(docs: any[]) {
+        console.log('setting docs');
         _.each(docs, (doc, index) => {
             let item = this.generateNewItem(doc);
             if (this.docs[index] && this.docs[index].id == item.id) {
@@ -107,14 +114,14 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     private generateNewItem(doc: any) {
         let docSrc = doc.src || doc.url || doc.target || doc.file || doc.id;
 
-        return {
+        return _.defaults(_.clone(doc), {
             src: docSrc,
             id: doc.id || docSrc,
             name: doc.name || doc.file_name,
             progressMode: doc.progressMode || (doc.progress || doc.progressValue) ? 'determinate' : 'indeterminate',
             progress: doc.progress || doc.progressValue,
             progressVisibility: doc.progressVisibility || (doc.progress || doc.progressValue || doc.progressMode) ? true : false
-        }
+        })
     }
 
 

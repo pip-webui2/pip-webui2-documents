@@ -40,7 +40,7 @@ export class AppComponent {
   public selectedTheme: Theme;
   public activeMediaQuery: boolean;
   public mode: string;
-  public app: string = 'documents';
+  public app: string = 'Documents';
   public url: string;
   public langs: string[] = [];
   public selectedLang: string = 'en';
@@ -82,6 +82,8 @@ export class AppComponent {
         this.listIndex = this.list.findIndex((item) => {
           return "/" + item.route == this.url;
         })
+
+        this.listIndex = this.listIndex == -1 ? 0 : this.listIndex;
       }
     });
 

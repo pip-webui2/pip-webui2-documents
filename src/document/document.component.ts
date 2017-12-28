@@ -11,6 +11,7 @@ export class PipDocumentComponent implements OnInit, AfterViewInit {
     private _opacity: string = null;
     private _openDocInNewTab: boolean = true;
 
+    @Input() disabled: boolean = false;
     @Input() public noErrorState: boolean = false;
 
     @Input() set openInTab(open: boolean) {
@@ -60,6 +61,8 @@ export class PipDocumentComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() { }
 
     public onClick() {
+        if (this.disabled) return;
+
         if (this.progressVisibility) {
             this.progressVisibility = false;
             this.onCancelClick.emit({

@@ -1,5 +1,5 @@
-<div (click)="onClick()" [ngClass]="{ 'error': icon == 'error', 'progress': icon == 'clear' }">
-    <mat-icon color="{{ icon == 'error' || icon == 'clear' ? 'warn' : 'primary' }}">{{ icon }}</mat-icon>
+<div (click)="onClick()" [ngClass]="{ 'error': icon == 'error', 'progress': icon == 'clear', 'disabled': disabled }">
+    <mat-icon color="{{ icon == 'error' || icon == 'clear' ? 'warn' : disabled ? '' : 'primary' }}">{{ icon }}</mat-icon>
     <span>{{ document?.name }}</span>
     <mat-progress-bar *ngIf="progressVisibility" color="primary" [mode]="progressMode" [value]="progress" >
     </mat-progress-bar>

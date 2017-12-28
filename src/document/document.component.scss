@@ -7,7 +7,7 @@
      :host.pip-document {
         color: mat-color($foreground, text);
         background: mat-color($background, card);
-        &:hover {
+        &:hover>div:not(.disabled) {
             background: mat-color($foreground, divider);
         }
     }
@@ -100,6 +100,10 @@
             .mat-icon {
                 opacity: 1 !important;
             }
+        }
+
+        &.disabled {
+            cursor: auto;
         }
 
         .mat-icon {

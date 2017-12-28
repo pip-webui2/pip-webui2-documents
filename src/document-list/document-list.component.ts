@@ -25,6 +25,7 @@ import { PipDocumentComponent } from '../document/document.component'
 export class PipDocumentListComponent implements OnInit, AfterViewInit {
     @Input('collapsable') isCollapsable: boolean = true;
     @Input() showIcon: boolean = true;
+    @Input() disabled: boolean = false;
     @Input() icon: string = 'attachments';
     @ViewChildren(PipDocumentComponent) private _viewComponents: QueryList<PipDocumentComponent>;
     public showDocs: boolean = false;

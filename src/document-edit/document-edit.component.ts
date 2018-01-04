@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
 
 @Component({

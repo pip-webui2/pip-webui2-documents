@@ -1,7 +1,8 @@
-import * as _ from 'lodash';
 import { QueryList, IterableDiffers, Component, trigger, transition, style, animate, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener, ViewChildren, ViewChild } from '@angular/core';
 import { PipDocumentEditComponent } from '../document-edit/document-edit.component';
 import { PipDocumentComponent } from '../document/document.component'
+
+import { each, difference } from '../shared/documents.utils';
 
 @Component({
     selector: 'pip-document-list-edit',
@@ -45,7 +46,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() { }
 
     ngDoCheck() {
-        if (_.differenceWith(this.documents, this.docs, (a, b) => {
+        if (difference(this.documents, this.docs, (a, b) => {
             for(let key in a) {
                 if (a[key] != b[key]) return false;
             }
@@ -94,8 +95,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     }
 
     private setDocs(docs: any[]) {
-        console.log('setting docs');
-        _.each(docs, (doc, index) => {
+        each(docs, (doc, index) => {
             let item = this.generateNewItem(doc);
             if (this.docs[index] && this.docs[index].id == item.id) {
                 this.updateItemByIndex(index, item);
@@ -106,7 +106,7 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     }
 
     private updateItemByIndex(index, newItem) {
-        _.each(newItem, (value, key) => {
+        each(newItem, (value, key) => {
             this.docs[index][key] = value;
         });
     }
@@ -114,14 +114,14 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit {
     private generateNewItem(doc: any) {
         let docSrc = doc.src || doc.url || doc.target || doc.file || doc.id;
 
-        return _.defaults(_.clone(doc), {
+        return Object.assign(doc), {
             src: docSrc,
             id: doc.id || docSrc,
             name: doc.name || doc.file_name,
             progressMode: doc.progressMode || (doc.progress || doc.progressValue) ? 'determinate' : 'indeterminate',
             progress: doc.progress || doc.progressValue,
             progressVisibility: doc.progressVisibility || (doc.progress || doc.progressValue || doc.progressMode) ? true : false
-        })
+        };
     }
 
 

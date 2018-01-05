@@ -1,9 +1,10 @@
-import * as _ from 'lodash';
 import { Component, QueryList, trigger, transition, style, animate, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener, ViewChildren } from '@angular/core';
 
 import { TranslateService } from '@ngx-translate/core'
 import { DocumentListTranslations } from './shared/document-list.translations'
 import { PipDocumentComponent } from '../document/document.component'
+
+import { each } from '../shared/documents.utils';
 
 @Component({
     selector: 'pip-document-list',
@@ -53,7 +54,7 @@ export class PipDocumentListComponent implements OnInit, AfterViewInit {
     }
 
     private setDocs(docs: any[]) {
-        _.each(docs, (doc) => {
+        each(docs, (doc) => {
             this.docs.push({
                 src: doc.src || doc.url || doc.target || doc.file || doc.id,
                 name: doc.name || doc.file_name

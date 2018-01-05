@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
+import { each } from '../shared/documents.utils';
 
 @Component({
     selector: 'pip-document-edit',
@@ -52,7 +53,7 @@ export class PipDocumentEditComponent implements OnInit, AfterViewInit {
 
     public changeFile(e) {
         let files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
-        _.each(files, (file) => {
+        each(files, (file) => {
             if (!file) return;
 
             let reader = new FileReader();

@@ -3,7 +3,7 @@
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
 Electronic documents are used a lot in enterprise. Ability to attach documents to any item in application is a great feature that can enhance user experience. 
-Pip.WebUI.Documents module contains two controls to add/remove and visualize document attachments. It relies on **files** operations in standard REST API.
+Pip.WebUI.Documents module contains two controls to add/remove and visualize document attachments.
 
 ### Document list view
 

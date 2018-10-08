@@ -1,0 +1,8 @@
+<pip-document [documentUrl]="document.src" noErrorState="true" [documentName]="document.name" openInTab="false"
+              [progressVisibility]="isProgress" (onCancelClick)="onCancelClick()" (onDocumentClick)="onDocumentClick()"
+              [defaultIcon]="defaultIcon">
+</pip-document>
+<input #fileInput type="file" name="file" (change)="changeFile($event)" multiple [disabled]="disabled">
+<button mat-icon-button *ngIf="document.src" class="delete-button" (click)="onDeleteClick($event)">
+    <mat-icon>clear</mat-icon>
+</button>

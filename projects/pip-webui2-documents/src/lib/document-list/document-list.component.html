@@ -1,0 +1,14 @@
+<button mat-button class="pip-documents-name" (click)="toggleDocs()" [disabled]="!isCollapsable || disabled">
+    <div>
+        <mat-icon *ngIf="showIcon">{{ icon || 'attachments' }}</mat-icon>
+        <span class="pip-documents-text">{{ docs.length + ' ' }}{{ loacaledAttachments | translate }}</span>
+        <mat-icon class="expander-icon" [ngClass]="{'opened': showDocs}" *ngIf="isCollapsable && docs.length > 0">expand_more</mat-icon>
+    </div>
+</button>
+
+<div *ngIf="isCollapsable" [ngClass]="{'opened': showDocs}" pipFocusedOpacity="1" pipFocused [dynamicTrigger]="docs.length"
+     (onEnterSpacePress)="onEnterSpacePress($event)" (onDeletePress)="onDeletePress($event)" class="pip-documents-container">
+    <div [@fadeIn]="''" *ngFor="let doc of docs; let i = index" class="pip-focusable" tabindex="-1">
+        <pip-document [disabled]="disabled" [documentUrl]="doc.src" [documentName]="doc.name" [defaultIcon]="defaultIcon"></pip-document>
+    </div>
+</div>

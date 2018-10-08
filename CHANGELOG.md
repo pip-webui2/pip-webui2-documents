@@ -14,3 +14,18 @@ No breaking changes in this version
 
 ### Bug Fixes
 No fixes in this version
+
+## <a name="1.0.0"></a> 1.0.0 (2018-10-08)
+
+Update to Angular 6
+
+### Features
+
+* **document list**: document list view and edit controls
+* **document**: document view and edit controls
+
+### Breaking Changes
+No breaking changes in this version
+
+### Bug Fixes
+No fixes in this version

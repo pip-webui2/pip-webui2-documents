@@ -1,8 +1,0 @@
-<div pipFocused [dynamicTrigger]="docs.length" (onEnterSpacePress)="onEnterSpacePress($event)" (onDeletePress)="onDeletePress($event)">
-    <div [@fadeIn]="''" *ngFor="let doc of docs; let i = index" class="pip-focusable" tabindex="-1">
-        <pip-document [documentUrl]="doc.src" [documentName]="doc.name" 
-            [progressMode]="doc.progressMode" [progress]="doc.progress" [progressVisibility]="doc.progressVisibility" (onCancelClick)="onCancelClick($event, i)"  [defaultIcon]="defaultIcon"></pip-document>
-        <button *ngIf="!doc.progressVisibility" tabindex="-1" mat-icon-button class="delete-button" (click)="onDeleteClick(i)"><mat-icon>clear</mat-icon></button>
-    </div>
-    <pip-document-edit (onLoad)="onLoad($event)" [defaultIcon]="defaultAddIcon" [disabled]="disabled" [readAsArrayBuffer]="readAsArrayBuffer" class="pip-focusable" tabindex="0"></pip-document-edit>
-</div>

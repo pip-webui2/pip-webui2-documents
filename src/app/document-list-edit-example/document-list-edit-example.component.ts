@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { each } from 'lodash';
-import { PipSidenavService } from 'pip-webui2-layouts-temp';
-import { PipNavService } from 'pip-webui2-nav-temp';
+import { PipSidenavService } from 'pip-webui2-layouts';
+import { PipNavService } from 'pip-webui2-nav';
 
 @Component({
   selector: 'app-document-list-edit-example',

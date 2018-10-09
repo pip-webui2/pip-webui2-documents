@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatIconModule, MatButtonToggleModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { PipDocumentListEditModule } from 'pip-webui2-documents';
-import { PipSidenavModule } from 'pip-webui2-layouts-temp';
-import { PipNavModule } from 'pip-webui2-nav-temp';
+import { PipSidenavModule } from 'pip-webui2-layouts';
+import { PipNavModule } from 'pip-webui2-nav';
 
 import { DocumentListEditExampleComponent } from './document-list-edit-example.component';
 

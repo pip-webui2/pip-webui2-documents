@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule, MatProgressBarModule, MatButtonModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
-import { PipFocusedModule } from 'pip-webui2-behaviors-temp';
+import { PipFocusedModule } from 'pip-webui2-behaviors';
 
 import { PipDocumentModule } from '../document/document.module';
 import { PipDocumentListComponent } from './document-list.component';

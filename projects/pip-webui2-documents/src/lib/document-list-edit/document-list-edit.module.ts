@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatIconModule } from '@angular/material';
-import { PipFocusedModule } from 'pip-webui2-behaviors-temp';
+import { PipFocusedModule } from 'pip-webui2-behaviors';
 
 import { PipDocumentListEditComponent } from './document-list-edit.component';
 import { PipDocumentModule } from '../document/document.module';

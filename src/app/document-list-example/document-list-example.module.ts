@@ -4,8 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { PipDocumentModule, PipDocumentListModule } from 'pip-webui2-documents';
-import { PipSidenavModule } from 'pip-webui2-layouts-temp';
-import { PipNavModule } from 'pip-webui2-nav-temp';
+import { PipSidenavModule } from 'pip-webui2-layouts';
+import { PipNavModule } from 'pip-webui2-nav';
 
 import { DocumentListExampleComponent } from './document-list-example.component';
 

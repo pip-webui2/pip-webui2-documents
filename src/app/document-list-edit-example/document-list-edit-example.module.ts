@@ -12,7 +12,7 @@ import { DocumentListEditExampleComponent } from './document-list-edit-example.c
   imports: [
     CommonModule,
     MatButtonModule, MatIconModule, MatButtonToggleModule,
-    TranslateModule,
+    TranslateModule.forChild(),
     PipDocumentListEditModule,
     PipSidenavModule,
     PipNavModule

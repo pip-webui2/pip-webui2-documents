@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
+import { PipMediaModule } from 'pip-webui2-layouts';
 
 import { DocumentListExampleComponent } from './document-list-example.component';
+import { DocumentListExampleModule } from './document-list-example.module';
 
 describe('DocumentListExampleComponent', () => {
   let component: DocumentListExampleComponent;
@@ -8,9 +13,16 @@ describe('DocumentListExampleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocumentListExampleComponent ]
+      imports: [
+        NoopAnimationsModule,
+        FlexLayoutModule,
+        TranslateModule.forRoot(),
+        PipMediaModule,
+
+        DocumentListExampleModule
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

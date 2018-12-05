@@ -5,17 +5,17 @@ import { MatIconModule, MatProgressBarModule } from '@angular/material';
 import { PipDocumentComponent } from './document.component';
 
 @NgModule({
-  declarations: [
-    PipDocumentComponent
-  ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatProgressBarModule
-  ],
-  exports: [
-    PipDocumentComponent
-  ],
-  providers: [],
+    declarations: [
+        PipDocumentComponent
+    ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatProgressBarModule
+    ],
+    exports: [
+        PipDocumentComponent
+    ],
+    providers: [],
 })
 export class PipDocumentModule { }

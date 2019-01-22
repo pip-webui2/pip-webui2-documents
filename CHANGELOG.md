@@ -62,3 +62,18 @@ No breaking changes in this version
 
 ### Bug Fixes
 No fixes in this version
+
+## <a name="1.1.2"></a> 1.1.2 (2019-01-22)
+
+Bundle size and update for new themes
+
+### Features
+
+* **document list**: document list view and edit controls
+* **document**: document view and edit controls
+
+### Breaking Changes
+No breaking changes in this version
+
+### Bug Fixes
+No fixes in this version

@@ -7,7 +7,7 @@ import { DocumentListEditExampleComponent } from './document-list-edit-example/d
 const appRoutes: Routes = [
     { path: 'document_list', component: DocumentListExampleComponent },
     { path: 'document_list_edit', component: DocumentListEditExampleComponent },
-    { path: '', pathMatch: 'full', redirectTo: 'document_list' }
+    { path: '**', redirectTo: 'document_list' }
 ];
 
 @NgModule({

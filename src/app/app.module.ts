@@ -42,7 +42,7 @@ import { DocumentListEditExampleModule } from './document-list-edit-example/docu
     TranslateModule.forRoot(),
 
     PipThemesModule.forRoot(),
-    PipAppbarModule,
+    PipAppbarModule.forRoot(),
     PipRightnavModule.forRoot(),
     PipMediaModule.forRoot(),
     PipSidenavModule.forRoot(),

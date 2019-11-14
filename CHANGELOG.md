@@ -77,3 +77,18 @@ No breaking changes in this version
 
 ### Bug Fixes
 No fixes in this version
+
+## <a name="1.1.3"></a> 1.1.3 (2019-11-14)
+
+Update for new themes
+
+### Features
+
+* **document list**: document list view and edit controls
+* **document**: document view and edit controls
+
+### Breaking Changes
+No breaking changes in this version
+
+### Bug Fixes
+No fixes in this version

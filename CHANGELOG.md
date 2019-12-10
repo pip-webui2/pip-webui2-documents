@@ -92,3 +92,18 @@ No breaking changes in this version
 
 ### Bug Fixes
 No fixes in this version
+
+## <a name="1.1.4"></a> 1.1.4 (2019-12-10)
+
+`accent` and `primary` colors switched in `mst-elegant-theme`
+
+### Features
+
+* **document list**: document list view and edit controls
+* **document**: document view and edit controls
+
+### Breaking Changes
+No breaking changes in this version
+
+### Bug Fixes
+No fixes in this version

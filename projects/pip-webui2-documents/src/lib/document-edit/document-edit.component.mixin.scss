@@ -1,0 +1,15 @@
+@mixin pip-document-edit-mixin($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  :host {
+    border: dashed 2px mat-color($foreground, divider);
+    .delete-button {
+      color: mat-color($foreground, text);
+      background: mat-color($background, card);
+      opacity: 0.56;
+    }
+    &:hover pip-document {
+      background: mat-color($foreground, divider);
+    }
+  }
+}

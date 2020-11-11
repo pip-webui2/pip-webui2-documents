@@ -2,16 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatToolbarModule, MatListModule, MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   PipAppbarModule,
-  PipRightnavModule,
   PipMediaModule,
   PipSidenavModule,
-  PipMainLayoutAltModule,
-  PipRootLayoutModule,
-  PipSidenavExpanderModule
+  PipRootLayoutModule, PipSidenavPosition,
 } from 'pip-webui2-layouts';
 import {
   PipBreadcrumbModule,
@@ -23,7 +22,7 @@ import {
   PipNavMenuModule
 } from 'pip-webui2-nav';
 
-import { PipThemesModule } from 'pip-webui2-themes';
+import { PipThemesModule, pipWebUI2ThemesList } from 'pip-webui2-themes';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,17 +37,54 @@ import { DocumentListEditExampleModule } from './document-list-edit-example/docu
     BrowserModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MatToolbarModule, MatListModule, MatButtonModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule,
     TranslateModule.forRoot(),
 
-    PipThemesModule.forRoot(),
+    PipThemesModule.withConfig({
+      themes: pipWebUI2ThemesList
+    }),
     PipAppbarModule.forRoot(),
-    PipRightnavModule.forRoot(),
     PipMediaModule.forRoot(),
-    PipSidenavModule.forRoot(),
-    PipMainLayoutAltModule,
+    PipSidenavModule.withConfig({
+      start: {
+        views: [
+          {
+            name: 'tablet',
+            alias: 'lt-md',
+            position: PipSidenavPosition.Root,
+            mode: 'side',
+            collapsed: true,
+            opened: true,
+            active: false
+          },
+          {
+            name: 'mobile',
+            alias: 'lt-sm',
+            position: PipSidenavPosition.Root,
+            mode: 'over'
+          }
+        ]
+      },
+      end: {
+        views: [
+          {
+            name: 'default',
+            position: PipSidenavPosition.Root,
+            mode: 'side',
+            width: 350
+          },
+          {
+            name: 'mobile',
+            alias: 'lt-sm',
+            position: PipSidenavPosition.Root,
+            mode: 'over'
+          }
+        ]
+      }
+    }),
     PipRootLayoutModule,
-    PipSidenavExpanderModule,
     PipBreadcrumbModule,
     PipNavIconModule,
     PipPrimaryActionsModule,
@@ -64,4 +100,4 @@ import { DocumentListEditExampleModule } from './document-list-edit-example/docu
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {}

@@ -7,16 +7,17 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "pip",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/pip-webui2-documents-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -33,6 +34,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -130,7 +137,7 @@
       "root": "projects/pip-webui2-documents",
       "sourceRoot": "projects/pip-webui2-documents/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "pip",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

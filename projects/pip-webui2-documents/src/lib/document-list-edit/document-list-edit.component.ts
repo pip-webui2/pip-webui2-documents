@@ -1,17 +1,4 @@
-import {
-    QueryList,
-    Component,
-    Input,
-    Output,
-    OnInit,
-    DoCheck,
-    AfterViewInit,
-    EventEmitter,
-    Renderer,
-    ElementRef,
-    ViewChildren,
-    ViewChild
-} from '@angular/core';
+import { QueryList, Component, Input, Output, OnInit, DoCheck, AfterViewInit, EventEmitter, ElementRef, ViewChildren, ViewChild, Renderer2 } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 import { PipDocumentEditComponent } from '../document-edit/document-edit.component';
@@ -49,10 +36,10 @@ export class PipDocumentListEditComponent implements OnInit, AfterViewInit, DoCh
     @Output() onUpdateDocuments: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
-        private renderer: Renderer,
+        private renderer: Renderer2,
         private elRef: ElementRef
     ) {
-        renderer.setElementClass(elRef.nativeElement, 'pip-document-list-edit', true);
+        renderer.addClass(elRef.nativeElement, 'pip-document-list-edit');
     }
 
     ngOnInit() { }

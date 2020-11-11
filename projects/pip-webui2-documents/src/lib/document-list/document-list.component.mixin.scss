@@ -1,0 +1,7 @@
+@mixin pip-document-list-mixin($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  :host .pip-documents-container>div:focus pip-document {
+    outline: solid 2px mat-color($foreground, text);
+  }
+}

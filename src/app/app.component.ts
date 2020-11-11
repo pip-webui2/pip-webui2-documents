@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material/icon';
 import { TranslateService } from '@ngx-translate/core';
 import { each } from 'lodash';
-import { PipMediaService, PipSidenavService, PipRightnavService } from 'pip-webui2-layouts';
+import { PipMediaService, PipSidenavService } from 'pip-webui2-layouts';
 import { PipNavService } from 'pip-webui2-nav';
 import { PipThemesService, Theme } from 'pip-webui2-themes';
 
@@ -14,32 +14,10 @@ import { AppTranslations } from './app.strings';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public languages: string[];
-  public language = 'en';
   public themes: Theme[];
   public theme: Theme;
-  public themesLocalNames: any = {
-    'candy-theme': 'Candy',
-    'unicorn-dark-theme': 'Unicorn Dark',
-    'pip-blue-theme': 'Blue',
-    'pip-grey-theme': 'Grey',
-    'pip-pink-theme': 'Pink',
-    'pip-green-theme': 'Green',
-    'pip-navy-theme': 'Navy',
-    'pip-amber-theme': 'Amber',
-    'pip-orange-theme': 'Orange',
-    'pip-dark-theme': 'Dark',
-    'pip-black-theme': 'Black',
-    'bootbarn-warm-theme': 'Bootbarn Warm',
-    'bootbarn-cool-theme': 'Bootbarn Cool',
-    'bootbarn-mono-theme': 'Bootbarn Mono',
-    'mst-black-theme': 'MST Black',
-    'mst-black-dark-theme': 'MST Black Dark',
-    'mst-mono-theme': 'MST Mono',
-    'mst-orange-theme': 'MST Orange',
-    'mst-orange-dark-theme': 'MST Orange Dark',
-    'mst-elegant-theme': 'MST Elegant'
-  };
+  public languages = ['en', 'ru'];
+  public language: string;
   public messages: any[] = [
     { image_src: '/assets/girl.png', subject: 'University', from: 'Marta', content: 'Tommorow you should visit university' },
     { image_src: '/assets/boy2.png', subject: 'Party', from: 'Sam', content: 'We are going to have a party' },
@@ -52,39 +30,43 @@ export class AppComponent implements OnInit {
     private themesService: PipThemesService,
     private matIconRegistry: MatIconRegistry,
     private navService: PipNavService,
-    private rightnav: PipRightnavService,
     private sidenav: PipSidenavService,
     private translate: TranslateService,
   ) {
-    this.media.activate();
-    this.themesService.selectedTheme = this.themesService.themes[0];
-    this.matIconRegistry.registerFontClassAlias('ice', 'ice');
-
-    this.translate.use('en');
+    this.themes = this.themesService.themesArray;
+    this.theme = this.themesService.currentTheme;
+    // Translations init
+    this.translate.addLangs(this.languages);
+    this.translate.setDefaultLang('en');
     this.translate.setTranslation('en', AppTranslations.en, true);
     this.translate.setTranslation('ru', AppTranslations.ru, true);
+    const browserLang = translate.getBrowserLang();
+    this.translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+    this.language = this.translate.currentLang;
 
     this.navService.showNavIcon({
-      icon: 'menu',
+      fontIcon: 'menu',
       action: () => {
-        this.sidenav.toggleNav();
+        this.sidenav.start.toggle();
       }
     });
 
     this.navService.showPrimaryActions({
       actions: [
         {
-          icon: 'notifications',
+          icon: {
+            fontIcon: 'notifications'
+          },
           name: 'notifications',
           click: () => {
-            this.rightnav.toggleRightnav();
+            this.sidenav.end.toggle();
           }
         },
         {
-          icon: 'translate', name: 'translate', subActions: this.generatePrimaryActionLanguageList()
+          icon: { fontIcon: 'translate' }, name: 'translate', subActions: this.generatePrimaryActionLanguageList()
         },
         {
-          icon: 'format_color_fill', name: 'format_color_fill', subActions: this.generatePrimaryActionThemeList()
+          icon: { fontIcon: 'format_color_fill' }, name: 'format_color_fill', subActions: this.generatePrimaryActionThemeList()
         }
       ]
     });
@@ -111,15 +93,13 @@ export class AppComponent implements OnInit {
         }
       ]
     });
+    this.navService.showNavHeader({
+      title: 'Documents',
+      subtitle: ''
+    });
   }
 
   ngOnInit() {
-    this.selectTheme(this.themesService.selectedTheme);
-  }
-
-  private selectTheme(selectedTheme) {
-    this.themesService.selectedTheme = selectedTheme;
-    this.theme = selectedTheme;
   }
 
   private generatePrimaryActionLanguageList() {
@@ -140,16 +120,20 @@ export class AppComponent implements OnInit {
   }
 
   private generatePrimaryActionThemeList() {
-    const list = [];
+    return this.themes.map(theme => ({
+      title: theme.displayName ?? theme.name,
+      name: theme.name,
+      click: () => this.changeTheme(theme)
+    }));
+  }
 
-    each(this.themesService.themes, (theme) => {
-      list.push({
-        title: this.themesLocalNames[theme.name], click: () => {
-          this.selectTheme(theme);
-        }
-      });
-    });
+  public changeLanguage(language: string) {
+    this.language = language;
+    this.translate.use(language);
+  }
 
-    return list;
+  public changeTheme(theme: Theme) {
+    this.theme = theme;
+    this.themesService.selectTheme(theme.name);
   }
 }

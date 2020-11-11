@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, AfterViewInit, EventEmitter, Renderer, ElementRef, HostListener } from '@angular/core';
+import { Component, Input, Output, OnInit, AfterViewInit, EventEmitter, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Component({
     selector: 'pip-document',
@@ -26,16 +26,14 @@ export class PipDocumentComponent implements OnInit, AfterViewInit {
     }
     @Input() defaultIcon: string = null;
     @Input() set backgroundColor(color: string) {
-        this.renderer.setElementStyle(this.elRef.nativeElement, 'background-color', color);
+        this.renderer.setStyle(this.elRef.nativeElement, 'background-color', color);
     }
     @Input() set foregroundColor(color: string) {
-        this.renderer.setElementStyle(this.elRef.nativeElement, 'color', color);
+        this.renderer.setStyle(this.elRef.nativeElement, 'color', color);
     }
     @Input() set foregroundColorOpacity(opacity: string) {
         this._opacity = opacity;
-        this.renderer.setElementStyle(
-            this.elRef.nativeElement.querySelector('mat-icon'), 'opacity', opacity || this._defaultColorOpacity
-        );
+        this.renderer.setStyle(this.elRef.nativeElement.querySelector('mat-icon'), 'opacity', opacity || this._defaultColorOpacity);
     }
     @Input() public progressMode = 'indeterminate';
     @Input() public progress = 0;
@@ -48,17 +46,15 @@ export class PipDocumentComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         if (this._opacity == null) {
-            this.renderer.setElementStyle(
-                this.elRef.nativeElement.querySelector('mat-icon'), 'opacity', this._defaultColorOpacity
-            );
+            this.renderer.setStyle(this.elRef.nativeElement.querySelector('mat-icon'), 'opacity', this._defaultColorOpacity);
         }
     }
 
     constructor(
-        private renderer: Renderer,
+        private renderer: Renderer2,
         private elRef: ElementRef
     ) {
-        renderer.setElementClass(elRef.nativeElement, 'pip-document', true);
+        renderer.addClass(elRef.nativeElement, 'pip-document');
     }
 
     ngAfterViewInit() { }

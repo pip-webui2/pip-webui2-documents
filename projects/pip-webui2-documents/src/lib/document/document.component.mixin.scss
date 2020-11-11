@@ -1,0 +1,11 @@
+@mixin pip-document-mixin($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  :host.pip-document {
+    color: mat-color($foreground, text);
+    background: mat-color($background, card);
+    &:hover>div:not(.disabled) {
+      background: mat-color($foreground, divider);
+    }
+  }
+}

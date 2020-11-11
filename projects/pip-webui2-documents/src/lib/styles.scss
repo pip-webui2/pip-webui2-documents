@@ -1,0 +1,11 @@
+@import 'document/document.component.mixin';
+@import 'document-edit/document-edit.component.mixin';
+@import 'document-list/document-list.component.mixin';
+@import 'document-list-edit/document-list-edit.component.mixin';
+
+@mixin pip-webui2-documents-mixin($theme) {
+  @include pip-document-mixin($theme);
+  @include pip-document-edit-mixin($theme);
+  @include pip-document-list-mixin($theme);
+  @include pip-document-list-edit-mixin($theme);
+}

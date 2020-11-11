@@ -27,9 +27,7 @@ export class DocumentListEditExampleComponent implements OnInit {
 
   constructor(
     private navService: PipNavService,
-    private sidenav: PipSidenavService,
   ) {
-    this.sidenav.active = true;
     this.navService.showTitle('Document list edit');
   }
 

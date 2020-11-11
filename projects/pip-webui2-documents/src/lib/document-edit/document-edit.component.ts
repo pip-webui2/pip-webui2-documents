@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, OnDestroy, AfterViewInit, ViewChild, EventEmitter, Renderer, ElementRef } from '@angular/core';
+import { Component, Input, Output, OnInit, OnDestroy, AfterViewInit, ViewChild, EventEmitter, ElementRef, Renderer2 } from '@angular/core';
 import { each } from '../shared/documents.utils';
 
 @Component({
@@ -30,18 +30,20 @@ export class PipDocumentEditComponent implements OnInit, OnDestroy, AfterViewIni
     @Output('onDelete') deleteEvent: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
-        private renderer: Renderer,
+        private renderer: Renderer2,
         private elRef: ElementRef
     ) {
-        renderer.setElementClass(elRef.nativeElement, 'pip-document-edit', true);
+        renderer.addClass(elRef.nativeElement, 'pip-document-edit');
     }
 
     ngOnInit() { }
 
     ngAfterViewInit() {
         this.renderer.listen(this.elRef.nativeElement, 'keypress', (event) => {
-            if (event.keyCode === 32 || event.keyCode === 13) { this.elRef.nativeElement.querySelector('input').click(); }
-        });
+    if (event.keyCode === 32 || event.keyCode === 13) {
+        this.elRef.nativeElement.querySelector('input').click();
+    }
+});
     }
 
     ngOnDestroy() { }

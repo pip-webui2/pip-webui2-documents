@@ -1,4 +1,4 @@
-import { Component, QueryList, Input, OnInit, AfterViewInit, Renderer, ElementRef, ViewChildren } from '@angular/core';
+import { Component, QueryList, Input, OnInit, AfterViewInit, ElementRef, ViewChildren, Renderer2 } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -41,11 +41,11 @@ export class PipDocumentListComponent implements OnInit, AfterViewInit {
     }
 
     constructor(
-        private renderer: Renderer,
+        private renderer: Renderer2,
         private elRef: ElementRef,
         private translate: TranslateService
     ) {
-        renderer.setElementClass(elRef.nativeElement, 'pip-document-list', true);
+        renderer.addClass(elRef.nativeElement, 'pip-document-list');
         this.generateDescription();
         this.translate.setTranslation('en', DocumentListTranslations.en, true);
         this.translate.setTranslation('ru', DocumentListTranslations.ru, true);

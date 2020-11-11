@@ -1,5 +1,9 @@
 <pip-root-layout>
-  <pip-rightnav-floating fxLayout="column">
+  <pip-sidenav-start>
+    <pip-nav-header></pip-nav-header>
+    <pip-nav-menu></pip-nav-menu>
+  </pip-sidenav-start>
+  <pip-sidenav-end>
     <mat-toolbar color="warn">
       <span>Inbox</span>
     </mat-toolbar>
@@ -13,8 +17,8 @@
         </p>
       </mat-list-item>
     </mat-list>
-  </pip-rightnav-floating>
-  <pip-root-content>
+  </pip-sidenav-end>
+  <pip-root-header>
     <pip-appbar>
       <pip-nav-icon> </pip-nav-icon>
       <pip-breadcrumb> </pip-breadcrumb>
@@ -22,13 +26,6 @@
       <pip-primary-actions> </pip-primary-actions>
       <pip-secondary-actions></pip-secondary-actions>
     </pip-appbar>
-    <pip-main-layout-alt>
-      <pip-sidenav>
-        <pip-nav-menu></pip-nav-menu>
-      </pip-sidenav>
-      <pip-main-content>
-        <router-outlet></router-outlet>
-      </pip-main-content>
-    </pip-main-layout-alt>
-  </pip-root-content>
+  </pip-root-header>
+  <router-outlet></router-outlet>
 </pip-root-layout>

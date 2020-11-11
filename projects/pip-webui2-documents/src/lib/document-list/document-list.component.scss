@@ -1,18 +1,3 @@
-@import '~pip-webui2-themes/variables';
-@mixin document-list-mixin($theme) {
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
-    :host .pip-documents-container>div:focus pip-document {
-        outline: solid 2px mat-color($foreground, text);
-    }
-}
-
-@each $class, $theme in $themes {
-    .#{$class} {
-        @include document-list-mixin($theme);
-    }
-}
-
 :host {
     display: block;
     width: 100%;
